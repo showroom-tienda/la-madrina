@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LA MADRINA | Showroom</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon-green:#25D366;
+    --neon-yellow:#f1c40f;
+    --neon-pink:#e91e63;
+    --neon-cyan:#00e5ff;
+    --bg-dark:#1a1a2e;
+    --bg-violet:#16213e;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Poppins',sans-serif;margin:0;padding:0;color:#fff;overflow-x:hidden;
+    background:linear-gradient(135deg,var(--bg-dark),var(--bg-violet),#0f3460);
+    background-size:400% 400%;animation:moverFondo 18s ease infinite;
+  }
+  @keyframes moverFondo{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  /* ===== HEADER / LOGO ===== */
+  header{text-align:center;padding:40px 20px 10px}
+  .logo-container{
+    position:relative;display:inline-block;margin:10px auto;max-width:660px;padding:22px;
+    background:rgba(0,0,0,.35);border-radius:30px;border:3px solid rgba(255,255,255,.2);
+    box-shadow:0 0 40px rgba(241,196,15,.4),0 0 80px rgba(233,30,99,.15),0 20px 60px rgba(0,0,0,.6);
+    animation:flotar 4s ease-in-out infinite;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  }
+  .logo-container::before{
+    content:'';position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;border-radius:32px;
+    background:linear-gradient(45deg,#f1c40f,#e91e63,#00e5ff,#f1c40f);background-size:300% 300%;
+    animation:brillar 3s linear infinite;z-index:-1;filter:blur(6px);opacity:.7;
+  }
+  @keyframes brillar{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .logo-img{width:100%;max-width:560px;border-radius:18px;display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.7)}
+  .logo-caption{
+    margin-top:16px;font-size:1.25em;font-weight:900;letter-spacing:5px;text-transform:uppercase;
+    background:linear-gradient(45deg,#f1c40f,#fff,#e91e63);background-size:200% 200%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:brillar 3s linear infinite;
+  }
+  .subtitulo{font-size:1.1em;color:#bdc3c7;margin-top:18px;letter-spacing:6px;text-transform:uppercase}
+
+  /* ===== CONTENEDOR ===== */
+  .container{max-width:1200px;margin:30px auto;padding:0 20px;display:flex;flex-direction:column;gap:50px}
+  .category-section{width:100%}
+  .category-title{
+    text-align:center;font-size:2.2em;font-weight:900;margin-bottom:26px;text-transform:uppercase;width:100%;
+    color:#fff;text-shadow:0 0 10px #fff,0 0 20px #fff;border-bottom:6px solid;
+    border-image:linear-gradient(45deg,#25D366,#e91e63,#00e5ff) 1;padding-bottom:14px;
+  }
+  .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px;justify-items:center}
+
+  /* ===== BUSCADOR ===== */
+  .search-wrap{max-width:640px;margin:0 auto 10px;padding:0 20px;width:100%}
+  .search-wrap input{
+    width:100%;padding:16px 24px;border-radius:50px;border:2px solid rgba(255,255,255,.25);
+    background:rgba(0,0,0,.45);color:#fff;font-family:inherit;font-size:1.05em;outline:none;
+    transition:all .3s ease;box-shadow:0 10px 30px rgba(0,0,0,.45);
+  }
+  .search-wrap input::placeholder{color:#9aa5b1}
+  .search-wrap input:focus{border-color:var(--neon-yellow);box-shadow:0 0 25px rgba(241,196,15,.4)}
+  .contador{text-align:center;color:#bdc3c7;font-size:.9em;letter-spacing:1px;margin:14px 0 0}
+
+  /* ===== MENÚ DE CATEGORÍAS (encabezado) ===== */
+  .menu-cats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:940px;margin:26px auto 0;padding:0 20px}
+  .menu-cats button{
+    font-family:inherit;cursor:pointer;color:#fff;font-weight:700;font-size:.92em;letter-spacing:.5px;
+    padding:11px 22px;border-radius:50px;border:2px solid rgba(255,255,255,.28);
+    background:rgba(0,0,0,.42);backdrop-filter:blur(8px);transition:all .3s ease;
+  }
+  .menu-cats button:hover{border-color:var(--neon-yellow);box-shadow:0 0 22px rgba(241,196,15,.45);transform:translateY(-3px)}
+  .category-section{scroll-margin-top:24px}
+
+  /* ===== TARJETA PRODUCTO ===== */
+  .producto{
+    position:relative;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);
+    border:2px solid rgba(255,255,255,.2);border-radius:20px;overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.5);transition:all .4s cubic-bezier(.175,.885,.32,1.275);
+    width:100%;max-width:400px;display:flex;flex-direction:column;
+  }
+  .producto:hover{transform:translateY(-12px) scale(1.02);border-color:var(--neon-yellow);
+    box-shadow:0 30px 60px rgba(0,0,0,.8),0 0 30px rgba(241,196,15,.3)}
+  .img-wrapper{position:relative;overflow:hidden;height:360px;background:#0c0c18;display:flex;align-items:center;justify-content:center}
+  .producto img{width:100%;height:100%;object-fit:contain;transition:transform .5s ease;display:block}
+  .producto:hover img{transform:scale(1.05)}
+  .tag-oferta{
+    position:absolute;top:15px;right:-40px;background:linear-gradient(45deg,#ff416c,#ff4b2b);color:#fff;
+    padding:9px 50px;transform:rotate(45deg);font-weight:800;font-size:.85rem;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);z-index:2;letter-spacing:1px;
+  }
+  .tag-oferta.disponible{background:linear-gradient(45deg,#25D366,#0f9d58)}
+  .info{padding:22px;text-align:center;background:rgba(0,0,0,.45);flex:1;display:flex;flex-direction:column}
+  .titulo{font-size:1.55em;font-weight:700;margin:0 0 8px}
+  .descripcion{font-size:.92em;color:#cfd8dc;line-height:1.5;margin:0 0 14px;flex:1}
+  .precio{font-size:2.2em;font-weight:900;color:var(--neon-yellow);text-shadow:0 0 20px rgba(241,196,15,.7)}
+  .moneda{font-size:.6em;color:#ddd;font-weight:500;vertical-align:super;margin-left:3px}
+
+  /* ===== BOTÓN WHATSAPP ===== */
+  .btn-whatsapp{
+    background-color:var(--neon-green);color:#fff;border:none;padding:15px;border-radius:50px;cursor:pointer;
+    width:100%;font-size:1.1em;font-weight:700;margin-top:16px;display:flex;align-items:center;
+    justify-content:center;gap:10px;box-shadow:0 0 20px rgba(37,211,102,.5);transition:all .3s ease;
+    position:relative;overflow:hidden;font-family:inherit;
+  }
+  .btn-whatsapp::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transition:left .5s}
+  .btn-whatsapp:hover::after{left:100%}
+  .btn-whatsapp:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(37,211,102,.8)}
+  .icon-wa{width:24px;height:24px;fill:#fff;flex-shrink:0}
+
+  /* ===== AVISO / VACÍO ===== */
+  .aviso{
+    max-width:760px;margin:10px auto 0;padding:26px;border-radius:20px;text-align:center;
+    background:rgba(255,255,255,.08);border:2px dashed rgba(255,255,255,.3);color:#e0e0e0;line-height:1.6;
+  }
+  .aviso b{color:var(--neon-yellow)}
+  footer{text-align:center;padding:30px;margin-top:40px;background:rgba(0,0,0,.5);
+    font-size:.9em;color:#999;letter-spacing:1px}
+  footer a{color:var(--neon-green);text-decoration:none;font-weight:700}
+
+  .logo-picture{display:block;width:100%}
+  .img-wrapper picture{display:block;width:100%;height:100%}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <picture class="logo-picture">
+      <img src="la-madrina.jpg" alt="LA MADRINA" class="logo-img">
+    </picture>
+    <div class="logo-caption">La Madrina</div>
+  </div>
+  <div class="subtitulo">⚡ Showroom ⚡</div>
+  <nav class="menu-cats" id="menuCategorias"></nav>
+</header>
+
+<div class="search-wrap">
+  <input id="buscador" type="search" placeholder="🔍 Buscar producto..." oninput="render()" autocomplete="off">
+</div>
+
+<div class="container" id="catalogo"></div>
+
+<footer>
+  © 2026 La Madrina | Showroom en línea |
+  <a href="#" id="footerWa">WhatsApp: +53 5 4446987</a>
+</footer>
+
+<script>
+/* =====================================================================
+   ⚙️  CONFIGURACIÓN GENERAL
+   ===================================================================== */
+const CONFIG = {
+  whatsapp: "5354446987",          // 📞 número de WhatsApp (sin +, sin espacios) → +53 5 4446987
+  moneda: "USD",                    // moneda que se muestra
+  nombreNegocio: "La Madrina"       // nombre que aparece en el mensaje
+};
+
+/* =====================================================================
+   📦  LISTA DE PRODUCTOS  (aquí agregamos / editamos todo)
+   ---------------------------------------------------------------------
+   Cada producto es un bloque { ... }. Campos:
+     categoria   : nombre de la sección (ej: "Madera", "Cerámica")
+     nombre      : nombre del producto
+     precio      : solo el número (ej: 100)
+     descripcion : descripción corta del producto
+     imagen      : ruta de la foto dentro de la carpeta img (ej: "img/tablas-100.jpg")
+     etiqueta    : texto de la esquina. Usa "OFERTA" o "Disponible"
+   ===================================================================== */
+const PRODUCTOS = [
+  { categoria: "🍚 Arroz y Víveres", nombre: "Arroz 1 kg", precio: "1.70", descripcion: "Arroz 1 kg", imagen: "img/arroz-1-kg-1.70.jpg", etiqueta: "Disponible" },
+  { categoria: "🍚 Arroz y Víveres", nombre: "Azúcar (libra)", precio: "1.00", descripcion: "Azúcar (libra)", imagen: "img/azucar-libra-1.jpg", etiqueta: "Disponible" },
+  { categoria: "🍚 Arroz y Víveres", nombre: "Sal 1 kg", precio: "2.00", descripcion: "Sal 1 kg", imagen: "img/sal-2.jpg", etiqueta: "Disponible" },
+  { categoria: "🍚 Arroz y Víveres", nombre: "Frijol 1 kg", precio: "1.70", descripcion: "Frijol 1 kg", imagen: "img/frijol-1.70.jpg", etiqueta: "Disponible" },
+  { categoria: "🍚 Arroz y Víveres", nombre: "Chícharo 1 kg", precio: "2.00", descripcion: "Chícharo 1 kg", imagen: "img/chicharo-2.jpg", etiqueta: "Disponible" },
+  { categoria: "🍗 Pollo", nombre: "Paquete de pollo 10 libras", precio: "15.00", descripcion: "Paquete de pollo 10 libras", imagen: "img/paquete-de-pollo-10-libras-15.jpg", etiqueta: "Disponible" },
+  { categoria: "🍗 Pollo", nombre: "Paquete de pollo 4.5 libras", precio: "7.00", descripcion: "Paquete de pollo 4.5 libras", imagen: "img/paquete-de-pollo-4.5-libras-7.jpg", etiqueta: "Disponible" },
+  { categoria: "🍗 Pollo", nombre: "Pechuga 5 libras", precio: "20.00", descripcion: "Pechuga 5 libras", imagen: "img/pechuga-5-libras-20.jpg", etiqueta: "Disponible" },
+  { categoria: "🌭 Embutidos", nombre: "Salchicha Polskamp", precio: "2.00", descripcion: "Salchicha Polskamp", imagen: "img/salchicha-polskamp-2.jpg", etiqueta: "Disponible" },
+  { categoria: "🌭 Embutidos", nombre: "Spam Polskamp", precio: "2.00", descripcion: "Spam Polskamp", imagen: "img/spam-polskamp-2.jpg", etiqueta: "Disponible" },
+  { categoria: "🥩 Carnes", nombre: "Lomo ahumado (libra)", precio: "3.00", descripcion: "Lomo ahumado (libra)", imagen: "img/lomo-libra-3.jpg", etiqueta: "Disponible" },
+  { categoria: "🥤 Bebidas", nombre: "Cerveza Mayabe", precio: "1.00", descripcion: "Cerveza Mayabe", imagen: "img/cerveza-mayabe-1.jpg", etiqueta: "Disponible" },
+  { categoria: "🥤 Bebidas", nombre: "Cerveza Cristal", precio: "1.00", descripcion: "Cerveza Cristal", imagen: "img/cerveza-cristal-1.jpg", etiqueta: "Disponible" },
+  { categoria: "🥤 Bebidas", nombre: "Jugo Fresko", precio: "1.00", descripcion: "Jugo Fresko", imagen: "img/jugo-fresko-1.jpg", etiqueta: "Disponible" },
+  { categoria: "🥤 Bebidas", nombre: "Choco Drink", precio: "3.00", descripcion: "Choco Drink", imagen: "img/chocolate-3.jpg", etiqueta: "Disponible" },
+  { categoria: "🥫 Conservas y Salsas", nombre: "Pasta de tomate 850 g", precio: "2.50", descripcion: "Pasta de tomate 850 g", imagen: "img/pure-de-tomate-2.50.jpg", etiqueta: "Disponible" },
+  { categoria: "🥫 Conservas y Salsas", nombre: "Mayonesa 500 ml", precio: "5.00", descripcion: "Mayonesa 500 ml", imagen: "img/mayonesa-5.jpg", etiqueta: "Disponible" },
+  { categoria: "🍪 Galletas", nombre: "Galleta de soda 324 g", precio: "3.00", descripcion: "Galleta de soda 324 g", imagen: "img/galleta-de-soda-3.jpg", etiqueta: "Disponible" },
+];
+
+/* =====================================================================
+   🔧  MOTOR DEL CATÁLOGO  (no hace falta tocar nada de aquí para abajo)
+   ===================================================================== */
+const WA_ICON = '<svg class="icon-wa" viewBox="0 0 32 32"><path d="M16 0C7.16 0 0 7.16 0 16c0 2.84.74 5.5 2.04 7.82L0 32l8.45-2.18A15.93 15.93 0 0 0 16 32c8.84 0 16-7.16 16-16S24.84 0 16 0zm0 29.09c-2.67 0-5.17-.72-7.33-1.97l-.53-.31-5.01 1.29 1.33-4.88-.35-.53A12.95 12.95 0 0 1 2.91 16C2.91 8.77 8.77 2.91 16 2.91S29.09 8.77 29.09 16 23.23 29.09 16 29.09zm5.96-9.38c-.33-.16-1.93-.95-2.23-1.06-.29-.11-.51-.16-.72.16-.21.32-.82 1.06-1.01 1.28-.19.21-.37.24-.7.08-.33-.16-1.37-.5-2.61-1.61-.96-.86-1.61-1.92-1.8-2.25-.19-.32-.02-.5.14-.66.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.53-.72-.54l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.66s1.15 3.08 1.31 3.29c.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.83.68.77.24 1.47.21 2.02.13.62-.09 1.93-.79 2.2-1.55.27-.76.27-1.41.19-1.55-.08-.13-.29-.21-.62-.37z"/></svg>';
+
+function contactar(nombre, precio, descripcion){
+  // la línea de descripción solo se agrega si aporta algo distinto al nombre
+  const n = (nombre || '').trim();
+  const d = (descripcion || '').trim();
+  const extra = (d && d.toLowerCase() !== n.toLowerCase()) ? `\n📝 ${d}` : '';
+
+  const msg =
+    `Hola! Estoy interesado en este producto:\n\n` +
+    `🛍️ ${n}\n` +
+    `💰 Precio: ${precio} ${CONFIG.moneda}` +
+    extra +
+    `\n\nLo vi en el catálogo de ${CONFIG.nombreNegocio}. ¿Está disponible?`;
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// lista estable de TODAS las categorías (para el menú del encabezado)
+function todasCategorias(){
+  const c = [];
+  PRODUCTOS.forEach(p => { if(!c.includes(p.categoria)) c.push(p.categoria); });
+  return c;
+}
+
+// ir directo a una categoría desde el encabezado
+function irACategoria(i){
+  const campo = document.getElementById('buscador');
+  if(campo && campo.value){ campo.value = ''; render(); }
+  const el = document.getElementById('cat-' + i);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function render(){
+  const cont = document.getElementById('catalogo');
+  const campo = document.getElementById('buscador');
+  const q = (campo && campo.value ? campo.value : '').trim().toLowerCase();
+
+  if(!PRODUCTOS.length){
+    cont.innerHTML = `<div class="aviso">
+      <h2 style="margin-top:0">🛠️ Catálogo listo para tus fotos</h2>
+      <p>Esta página ya está armada: cuando me subas las fotos con <b>nombre, precio y una descripción corta</b>,
+      los organizo por categorías y aparecerán aquí, cada uno con su botón de WhatsApp que manda la ficha completa.</p>
+    </div>`;
+    return;
+  }
+
+  // filtrar por el buscador
+  const lista = q
+    ? PRODUCTOS.filter(p => `${p.nombre} ${p.descripcion} ${p.categoria}`.toLowerCase().includes(q))
+    : PRODUCTOS;
+
+  if(!lista.length){
+    cont.innerHTML = `<div class="aviso">🔍 No se encontró ningún producto que coincida con "<b>${q}</b>".</div>`;
+    return;
+  }
+
+  // menú del encabezado con todas las categorías
+  const todas = todasCategorias();
+  const menu = document.getElementById('menuCategorias');
+  if(menu){
+    menu.innerHTML = todas.map((c, i) =>
+      `<button onclick="irACategoria(${i})">${c}</button>`).join('');
+  }
+
+  // agrupar por categoría conservando el orden
+  const cats = [];
+  lista.forEach(p => { if(!cats.includes(p.categoria)) cats.push(p.categoria); });
+
+  cont.innerHTML = `<div class="contador">${lista.length} producto${lista.length===1?'':'s'} disponible${lista.length===1?'':'s'}</div>` + cats.map(cat => {
+    const items = lista.filter(p => p.categoria === cat);
+    return `<div class="category-section" id="cat-${todas.indexOf(cat)}">
+      <h2 class="category-title">${cat}</h2>
+      <div class="product-grid">
+        ${items.map(p => `
+          <div class="producto">
+            <div class="img-wrapper">
+              ${p.etiqueta ? `<div class="tag-oferta ${p.etiqueta.toLowerCase()==='disponible'?'disponible':''}">${p.etiqueta}</div>` : ''}
+              <picture>
+                <source srcset="${p.imagen.replace(/\.jpe?g$/i, '.webp')}" type="image/webp">
+                <img src="${p.imagen}" alt="${p.nombre}" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="info">
+              <div class="titulo">${p.nombre}</div>
+              ${(p.descripcion || '').trim().toLowerCase() !== (p.nombre || '').trim().toLowerCase()
+                ? `<p class="descripcion">${p.descripcion}</p>` : ''}
+              <div class="precio">${p.precio} <span class="moneda">${CONFIG.moneda}</span></div>
+              <button class="btn-whatsapp" onclick="contactar('${p.nombre.replace(/'/g,"\\'")}','${p.precio}','${(p.descripcion||'').replace(/'/g,"\\'")}')">
+                ${WA_ICON} Contactar Ya
+              </button>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('footerWa').href =
+  `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent('Hola! Quiero información sobre los productos de '+CONFIG.nombreNegocio)}`;
+
+render();
+</script>
+</body>
+</html>
